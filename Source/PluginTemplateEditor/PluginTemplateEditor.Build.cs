@@ -2,32 +2,18 @@ using UnrealBuildTool;
 
 public class PluginTemplateEditor : ModuleRules
 {
-	public PluginTemplateEditor(ReadOnlyTargetRules Target) : base(Target)
-	{
-		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+    public PluginTemplateEditor(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PrivateIncludePaths.Add("PluginTemplateEditor/Private");
-		PrivateIncludePaths.Add("PluginTemplate/Private");
+        PrivateDependencyModuleNames.AddRange(new string[]
+        {
+            "Core",
+            "CoreUObject",
+            "Engine",
+            "PluginTemplate"
+        });
 
-		PublicDependencyModuleNames.AddRange
-        (
-			new string[]
-			{
-				"Core",
-				"InputCore"
-			}
-		);
-			
-		
-		PrivateDependencyModuleNames.AddRange
-        (
-			new string[]
-			{
-				"PluginTemplate",
-                "Engine",
-				"CoreUObject",
-                "UnrealEd"
-			}
-		);
-	}
+        // Add UnrealEd, Slate, ToolMenus, etc. only when used.
+    }
 }

@@ -1,30 +1,28 @@
 {
-	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "1.0.0",
-	"FriendlyName": "Plugin Template",
-	"Description": "Plugin Template Example",
-	"Category": "Others",
-	"CreatedBy": "JDSherbert",
-	"CreatedByURL": "https://github.com/JDSherbert/Unreal-Engine-Plugin-Template",
-	"DocsURL": "https://github.com/JDSherbert/Unreal-Engine-Plugin-Template",
-	"MarketplaceURL": "",
-	"SupportURL": "",
-	"CanContainContent": true,
-	"IsBetaVersion": false,
-	"IsExperimentalVersion": false,
-	"Installed": true,
-	"Modules": 
-    [
-		{
-			"Name": "PluginTemplate",
-			"Type": "Runtime",
-			"LoadingPhase": "Default"
-		},
-		{
-			"Name": "PluginTemplateEditor",
-			"Type": "Editor",
-			"LoadingPhase": "PreDefault"
-		}
-	]
+  "FileVersion": 3,
+  "Version": 2,
+  "VersionName": "1.1.0",
+  "FriendlyName": "Plugin Template (UE 5.9)",
+  "Description": "Reusable runtime and editor module starter for Unreal Engine 5.9",
+  "Category": "Templates",
+  "CreatedBy": "JDSherbert; UE 5.9 adaptation by draigon321",
+  "CreatedByURL": "https://github.com/JDSherbert/Unreal-Engine-Plugin-Template",
+  "DocsURL": "https://github.com/draigon321/Unreal-Engine-Plugin-Template-5.9",
+  "CanContainContent": true,
+  "IsBetaVersion": false,
+  "IsExperimentalVersion": false,
+  "Installed": false,
+  "EngineVersion": "5.9.0",
+  "Modules": [
+    {
+      "Name": "PluginTemplate",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "PluginTemplateEditor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    }
+  ]
 }
