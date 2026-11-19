@@ -3,8 +3,28 @@
 #include "Interfaces/IPluginManager.h"
 #include "Misc/Paths.h"
 #include "Modules/ModuleManager.h"
+#include "PluginDescriptor.h"
+#include "ModuleDescriptor.h"
 
 #define LOCTEXT_NAMESPACE "FUE59PluginWizardModule"
+
+class FRuntimeEditorTemplateDescription final : public FPluginTemplateDescription
+{
+public:
+    using FPluginTemplateDescription::FPluginTemplateDescription;
+
+    virtual void CustomizeDescriptorBeforeCreation(FPluginDescriptor& Descriptor) override
+    {
+        if (Descriptor.Modules.Num() > 0)
+        {
+            const FString RuntimeName = Descriptor.Modules[0].Name.ToString();
+            Descriptor.Modules.Add(FModuleDescriptor(
+                *FString(RuntimeName + TEXT("Editor")),
+                EHostType::Editor,
+                ELoadingPhase::Default));
+        }
+    }
+};
 
 class FUE59PluginWizardModule final : public IModuleInterface
 {
@@ -20,7 +40,7 @@ public:
         const FString TemplateDirectory = FPaths::Combine(
             Plugin->GetBaseDir(), TEXT("Templates"), TEXT("RuntimeEditor"));
 
-        Template = MakeShared<FPluginTemplateDescription>(
+        Template = MakeShared<FRuntimeEditorTemplateDescription>(
             LOCTEXT("Name", "Runtime + Editor Framework"),
             LOCTEXT("Description", "A reusable Unreal Engine 5.9 plugin with separate runtime and editor C++ modules."),
             TemplateDirectory,
