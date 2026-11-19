@@ -19,7 +19,7 @@ public:
         {
             const FString RuntimeName = Descriptor.Modules[0].Name.ToString();
             Descriptor.Modules.Add(FModuleDescriptor(
-                *FString(RuntimeName + TEXT("Editor")),
+                FName(*(RuntimeName + TEXT("Editor"))),
                 EHostType::Editor,
                 ELoadingPhase::Default));
         }
