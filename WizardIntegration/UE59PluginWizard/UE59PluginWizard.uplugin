@@ -1,0 +1,24 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "0.1.0",
+  "FriendlyName": "UE 5.9 Plugin Wizard Templates",
+  "Description": "Registers reusable runtime and editor plugin templates in the New Plugin wizard.",
+  "Category": "Editor",
+  "CanContainContent": false,
+  "Installed": false,
+  "EngineVersion": "5.9.0",
+  "Modules": [
+    {
+      "Name": "UE59PluginWizard",
+      "Type": "Editor",
+      "LoadingPhase": "PostEngineInit"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "PluginBrowser",
+      "Enabled": true
+    }
+  ]
+}
