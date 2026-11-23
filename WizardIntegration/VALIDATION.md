@@ -46,7 +46,8 @@ Check the automation log for a successful exit and runtime game-target compilati
 - [x] Maintainer generated and enabled `TestFramework4` with all options unchecked. Verified exactly four base source/build files, Runtime + Editor descriptor, zero reflected classes, no remaining name placeholders, both DLLs present, and both modules loaded in the editor log.
 - [x] Maintainer generated and enabled `TestFramework5` with Interface and Function Library selected. Verified both selected headers and function implementation, exactly two reflected runtime classes, no component or data asset scaffold, Runtime + Editor descriptor, both DLLs and both module loads in the editor log; no name placeholders remain.
 - [ ] Individually smoke-test Interface, Data Asset and Function Library selections in the editor (all 16 combinations already covered by static fixture testing; representative mixed selection verified above).
-- [ ] Close/reopen the configurable wizard and confirm checkboxes reset. Verify each generated Blueprint class is discoverable and usable in editor.
+- [ ] Close/reopen the configurable wizard and confirm checkboxes reset.
+- [x] Blueprint editor usability: maintainer added the component to `BP_FrameworkTest` and compiled; added the interface and observed `OnFrameworkEvent`; created `DA_FrameworkTest` and edited Display Name; placed the `Is Framework Object Valid` pure function in the Event Graph and compiled successfully. Screenshots confirm editor exposure; execution of that function in gameplay was not tested.
 - [ ] Package/launch a host game with generated runtime modules and no editor-module load errors.
 
 Run the engine-independent fixture test from the repository root with PowerShell 7 and a new output directory:
