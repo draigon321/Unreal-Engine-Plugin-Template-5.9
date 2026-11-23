@@ -8,7 +8,7 @@
 - [x] Maintainer confirmed both plugins enabled after reopening the editor.
 - [x] Independently rebuild the wizard from a clean source checkout.
 - [x] Package the generated plugin for Win64 and confirm the runtime build does not compile the editor module for game targets.
-- [ ] Package and launch a minimal host game with the generated plugin enabled.
+- [x] Package and launch a minimal host game with the generated plugin enabled.
 - [x] Verify a packaged wizard contains all four template source files.
 - [ ] Generate a new plugin using the packaged wizard in a disposable editor project.
 
@@ -19,7 +19,13 @@ Local UE 5.9 AutomationTool `BuildPlugin` for the existing `TestFramework1` comp
 - `UnrealEditor Win64 Development`: both runtime and editor modules compiled and linked.
 - `UnrealGame Win64 Development` and `UnrealGame Win64 Shipping`: only the runtime module compiled.
 - Clean checkout of v0.1 commit `48fc453`: wizard `BuildPlugin` compiled and linked `UnrealEditor-UE59PluginWizard.dll` and exited 0. All four template files were retained in the package.
-- This was a distributable plugin build, not a cooked host game launch. Host-game and packaged-wizard smoke tests remain open.
+- The distributable plugin build is separate from the cooked host-game launch below. The packaged-wizard generation smoke test remains open.
+
+### Cooked host game (2026-11-22)
+
+An isolated copy of the maintainer's UE59PluginDev project, with `TestFramework1` through `TestFramework5` and the v0.2 wizard enabled, successfully built, cooked, staged and archived using UE 5.9.0 (build 60738873), Win64 Development. `BuildCookRun` exited 0. The test map was `/Engine/Maps/Entry`; the copied project included the maintainer's Blueprint and Data Asset test assets.
+
+The actual packaged executable was launched with a test-only `-FrameworkSmokeTest` flag, `-nullrhi`, `-nosound` and `-unattended`. The isolated host's game module checked the loaded modules and cooked assets after map load, logged 17 passing checks, emitted `FRAMEWORK_SMOKE_RESULT=PASS`, and exited 0. `TestFramework1` runtime was loaded and its editor module was absent; the other four framework runtime modules were also loaded and all their editor modules plus the wizard module were absent. Two nonfatal EnhancedInput null-player-input errors were logged in the headless session. This validates runtime loading and cooked assets, not visual rendering or input behavior.
 
 ## Reproducible packaging procedure (Windows)
 
