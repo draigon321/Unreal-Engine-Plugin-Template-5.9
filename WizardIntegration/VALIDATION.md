@@ -44,7 +44,8 @@ Check the automation log for a successful exit and runtime game-target compilati
 - [ ] In a disposable C++ project, enable the packaged wizard and restart; confirm the standard tile and separate configurable wizard are both available.
 - [x] Maintainer generated and enabled `TestFramework3` with only Actor Component selected. Verified runtime/editor descriptor and DLLs, exactly one reflected runtime class (`TestFramework3Component`), no other scaffold source files, no remaining name placeholders, and both modules loaded in the editor log.
 - [x] Maintainer generated and enabled `TestFramework4` with all options unchecked. Verified exactly four base source/build files, Runtime + Editor descriptor, zero reflected classes, no remaining name placeholders, both DLLs present, and both modules loaded in the editor log.
-- [ ] In the configurable wizard, generate fresh plugins for the other three single options and a mixed pair. Verify descriptor and source names and that unchecked scaffolds are absent (all-options, Actor Component-only and no-options cases verified above).
+- [x] Maintainer generated and enabled `TestFramework5` with Interface and Function Library selected. Verified both selected headers and function implementation, exactly two reflected runtime classes, no component or data asset scaffold, Runtime + Editor descriptor, both DLLs and both module loads in the editor log; no name placeholders remain.
+- [ ] Individually smoke-test Interface, Data Asset and Function Library selections in the editor (all 16 combinations already covered by static fixture testing; representative mixed selection verified above).
 - [ ] Close/reopen the configurable wizard and confirm checkboxes reset. Verify each generated Blueprint class is discoverable and usable in editor.
 - [ ] Package/launch a host game with generated runtime modules and no editor-module load errors.
 
