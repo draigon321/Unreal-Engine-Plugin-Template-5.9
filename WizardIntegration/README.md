@@ -14,9 +14,11 @@ This optional **editor plugin** adds a **Runtime + Editor Framework** tile to **
 
 The wizard should create a renamed runtime module `<YourName>` and editor-only module `<YourName>Editor`. The template registers through `IPluginBrowser::RegisterPluginTemplate`, with `FPluginTemplateDescription` pointing at the included `Templates/RuntimeEditor` folder.
 
-## Current limitations and required testing
+## v0.1 validation status
 
-- **Unverified**: No Unreal 5.9 toolchain is available in this chat; compilation, registration, generated descriptor content, folder/file renaming, and successful generation require local validation.
+- In the maintainer's UE 5.9 / Visual Studio Development Editor test, the wizard generated `TestFramework1`; its runtime and editor DLLs compiled and linked successfully. The maintainer subsequently confirmed both the wizard and generated plugin were enabled in the editor.
+- The build reported a nonblocking Fab / ToolsetRegistry dependency warning. Close the editor before building from Visual Studio to avoid Live Coding conflicts.
+- This verifies the generated two-module baseline, not a clean rebuild of every repository module. See [validation checklist](VALIDATION.md) for packaging and regression checks.
 - The `PLUGIN_NAME` placeholder follows the Unreal PluginUtils naming convention; verify its substitution in both file paths and file contents in the specific 5.9 build.
 - This is a minimal C++ runtime/editor starter, not a Blueprint-only plugin, project template, or GCC implementation.
 - If the wizard does not create both modules properly, report the generated descriptor and build log before using generated plugins in production.

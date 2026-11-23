@@ -4,11 +4,11 @@ This fork is based on [JDSherbert's Unreal Engine Plugin Template](https://githu
 
 ## Status
 
-The descriptor and C++ module skeleton have been updated for an **intended Unreal Engine 5.9 target**. **Compilation and editor startup have not yet been verified against an installed UE 5.9 build.**
+The optional [UE 5.9 plugin wizard](WizardIntegration/README.md) generated a runtime/editor plugin that the maintainer compiled and enabled in UE 5.9. The standalone starter and packaging have separate validation requirements; see the [validation checklist](WizardIntegration/VALIDATION.md).
 
 ## Quick start
 
-1. Copy the entire repository into `YourProject/Plugins/PluginTemplate`.
+1. Copy `PluginTemplate.uplugin` and `Source/` into `YourProject/Plugins/PluginTemplate`. Install the optional wizard separately using its own instructions.
 2. Open a **C++ Unreal Engine 5.9 project** (or add a C++ class to a Blueprint-only project) with a supported native compiler toolchain installed.
 3. Regenerate project files and build the **Development Editor** target.
 4. Launch the editor and verify that **Plugin Template (UE 5.9)** is enabled under Plugins.
@@ -16,7 +16,7 @@ The descriptor and C++ module skeleton have been updated for an **intended Unrea
 
 ## Project templates vs plugin templates
 
-This repository is a **plugin starter**, not a native **New Project** template or **New Plugin wizard** template. Those integrations require separate template definitions / editor wizard customization and should be implemented and tested separately.
+This repository contains a standalone **plugin starter** and an optional **New Plugin wizard** integration. It is not a native **New Project** template.
 
 ## Test checklist
 
