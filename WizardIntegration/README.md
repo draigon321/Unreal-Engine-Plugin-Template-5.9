@@ -10,6 +10,23 @@ This optional **editor plugin** adds a **Runtime + Editor Framework** tile to **
 4. Enable **UE 5.9 Plugin Wizard Templates** in Edit > Plugins if it is not already enabled; restart.
 5. Choose **Add/New Plugin**, select **Runtime + Editor Framework**, enter a plugin name and create it.
 
+## Configurable wizard (v0.2)
+
+The original New Plugin tile remains available for the minimal runtime/editor starter. For optional scaffolds, open **Tools > Configurable Plugin Wizard**, select the framework template, and tick any combination of these options before creating the plugin:
+
+| Option | Generated runtime class |
+| --- | --- |
+| Blueprint Actor Component | `U<PluginName>Component`, Blueprint-spawnable component |
+| Blueprint Interface | `U<PluginName>Interface` / `I<PluginName>Interface`, with an implementable event |
+| Blueprint Data Asset | `U<PluginName>DataAsset`, Blueprint-visible display name property |
+| Blueprint Function Library | `U<PluginName>FunctionLibrary`, example pure validity function |
+
+All options start unchecked each time the configurable wizard opens. No options still creates the two-module framework. These are native C++ classes exposed to Blueprints, not pre-authored `.uasset` files; use the editor to create Blueprint subclasses, add components, implement the interface, and create data asset instances. No GCC dependency is introduced.
+
+Scaffolds are copied by Unreal's PluginUtils before compilation, so the normal wizard build includes reflected classes via Unreal Header Tool. The runtime module exports Core, CoreUObject and Engine as public dependencies for consumers of those headers. The configurable wizard is project-only and requires a C++ project.
+
+See [validation checklist](VALIDATION.md) for regression checks and build evidence.
+
 ## Intended output
 
 The wizard should create a renamed runtime module `<YourName>` and editor-only module `<YourName>Editor`. The template registers through `IPluginBrowser::RegisterPluginTemplate`, with `FPluginTemplateDescription` pointing at the included `Templates/RuntimeEditor` folder.

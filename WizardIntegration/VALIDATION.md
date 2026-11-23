@@ -38,3 +38,29 @@ Close the editor before running the following from PowerShell. Adjust paths to t
 ```
 
 Check the automation log for a successful exit and runtime game-target compilation. Editor binaries in a distributable plugin are expected; they must not be linked into a packaged game. Package a minimal C++ host project for Win64 Development, launch it, and inspect its log for runtime module startup and absence of editor-module load errors. Record engine version, host target, command, result and logs. Repeat with a distinct plugin name for future wizard releases.
+
+## v0.2 configurable wizard
+
+- [x] UE 5.9 `BuildPlugin` compiled and linked `UE59PluginWizard` and exited 0 on Win64.
+- [x] Inspected the resulting package: every base template and scaffold source file is present (9 files total).
+- [x] Static fixture generation for all 16 checkbox combinations verified selected/omitted headers, no collisions and placeholder substitution.
+- [x] Compile/package the all-enabled generated fixture (including Unreal Header Tool reflection): Nov 22, 2026, `ScaffoldTest15` `BuildPlugin` exited 0; Editor Development linked both modules and game Development/Shipping compiled the reflected runtime classes only.
+- [x] Maintainer confirmed the enabled v0.2 plugin exposes **Tools > Configurable Plugin Wizard** in UE 5.9.
+- [x] Maintainer generated and enabled `TestFramework2` with all four options on Nov 22, 2026. Independently inspected its descriptor (Runtime + Editor), all four renamed public headers, function library implementation, UHT generated headers and `UnrealEditor.uclasses` (all four reflected classes). Both DLLs exist and the editor log records loading both modules after restart. No `PLUGIN_NAME` placeholders remain in source.
+- [x] Installed the v0.2 distributable wizard package (`Installed: true`) in a separate disposable C++ project, rebuilt the host and wizard successfully, and opened its configurable wizard. Generated three additional plugins from the package's template files; results below.
+- [x] On Nov 23, 2026, the maintainer selected **Runtime + Editor Framework** in the standard New Plugin wizard of the disposable v0.2 package host and created `TestFramework9`. Verified four base source/build files, correct Runtime/Editor descriptor, zero optional reflected classes, both DLLs and both loaded modules in the editor log. The separate configurable wizard and legacy tile coexist.
+- [x] Maintainer generated and enabled `TestFramework3` with only Actor Component selected. Verified runtime/editor descriptor and DLLs, exactly one reflected runtime class (`TestFramework3Component`), no other scaffold source files, no remaining name placeholders, and both modules loaded in the editor log.
+- [x] Maintainer generated and enabled `TestFramework4` with all options unchecked. Verified exactly four base source/build files, Runtime + Editor descriptor, zero reflected classes, no remaining name placeholders, both DLLs present, and both modules loaded in the editor log.
+- [x] Maintainer generated and enabled `TestFramework5` with Interface and Function Library selected. Verified both selected headers and function implementation, exactly two reflected runtime classes, no component or data asset scaffold, Runtime + Editor descriptor, both DLLs and both module loads in the editor log; no name placeholders remain.
+- [x] Individually smoke-tested Interface (`TestFramework6`), Data Asset (`TestFramework7`) and Function Library (`TestFramework8`) on Nov 22, 2026. Each contains only its expected scaffold header/reflected runtime class, both correctly typed module descriptors and compiled DLLs. Both modules for each plugin loaded in the editor log. All 16 combinations also passed static fixture testing.
+- [x] Maintainer's before/after screenshots confirm closing and reopening the configurable wizard resets all four checkboxes.
+- [x] Blueprint editor usability: maintainer added the component to `BP_FrameworkTest` and compiled; added the interface and observed `OnFrameworkEvent`; created `DA_FrameworkTest` and edited Display Name; placed the `Is Framework Object Valid` pure function in the Event Graph and compiled successfully. Screenshots confirm editor exposure; execution of that function in gameplay was not tested.
+- [x] Package/launch a host game with generated runtime modules and no editor-module load errors (see cooked host-game evidence above). All 17 assertions passed: five runtime modules loaded and six editor modules absent; cooked Blueprint loads and spawns, generated component instantiated, generated interface implemented, cooked data asset with nonempty Display Name loads, and function library returns true for a valid actor and false for null. The function was exercised directly through the native API in the game; execution of the Blueprint graph node itself was not tested.
+
+Run the engine-independent fixture test from the repository root with PowerShell 7 and a new output directory:
+
+```powershell
+./WizardIntegration/Test-ScaffoldGeneration.ps1 -OutputDirectory C:/Temp/UE59ScaffoldFixtures
+```
+
+`ScaffoldTest0` is the no-options fixture, `ScaffoldTest15` contains all four options. The test mirrors filename/content and module API macro substitution but does not invoke the editor wizard. Package an all-enabled fixture using the same `BuildPlugin` procedure above, substituting its descriptor path. A fixture package is not a substitute for a real wizard UI smoke test.
