@@ -54,7 +54,7 @@ Check the automation log for a successful exit and runtime game-target compilati
 - [ ] Individually smoke-test Interface, Data Asset and Function Library selections in the editor (all 16 combinations already covered by static fixture testing; representative mixed selection verified above).
 - [ ] Close/reopen the configurable wizard and confirm checkboxes reset.
 - [x] Blueprint editor usability: maintainer added the component to `BP_FrameworkTest` and compiled; added the interface and observed `OnFrameworkEvent`; created `DA_FrameworkTest` and edited Display Name; placed the `Is Framework Object Valid` pure function in the Event Graph and compiled successfully. Screenshots confirm editor exposure; execution of that function in gameplay was not tested.
-- [ ] Package/launch a host game with generated runtime modules and no editor-module load errors.
+- [x] Package/launch a host game with generated runtime modules and no editor-module load errors (see cooked host-game evidence above). All 17 assertions passed: five runtime modules loaded and six editor modules absent; cooked Blueprint loads and spawns, generated component instantiated, generated interface implemented, cooked data asset with nonempty Display Name loads, and function library returns true for a valid actor and false for null. The function was exercised directly through the native API in the game; execution of the Blueprint graph node itself was not tested.
 
 Run the engine-independent fixture test from the repository root with PowerShell 7 and a new output directory:
 
