@@ -7,9 +7,17 @@
 - [x] Maintainer built `UE59PluginDevEditor` (Development Editor, Win64); generated DLLs linked successfully.
 - [x] Maintainer confirmed both plugins enabled after reopening the editor.
 - [ ] Independently rebuild the wizard from a clean source checkout.
-- [ ] Package the generated plugin for Win64 and confirm the runtime build does not compile the editor module for game targets.
+- [x] Package the generated plugin for Win64 and confirm the runtime build does not compile the editor module for game targets.
 - [ ] Package and launch a minimal host game with the generated plugin enabled.
 - [ ] Verify a packaged wizard still contains all template source files and can generate a new plugin.
+
+### Packaging evidence (2026-11-22)
+
+Local UE 5.9 AutomationTool `BuildPlugin` for the existing `TestFramework1` completed successfully (exit code 0). With Visual Studio toolchain 14.50.35740 and Windows SDK 10.0.26100.0:
+
+- `UnrealEditor Win64 Development`: both runtime and editor modules compiled and linked.
+- `UnrealGame Win64 Development` and `UnrealGame Win64 Shipping`: only the runtime module compiled.
+- This was a distributable plugin build, not a cooked host game launch. Host-game and packaged-wizard smoke tests remain open.
 
 ## Reproducible packaging procedure (Windows)
 
