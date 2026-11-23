@@ -39,6 +39,7 @@ Check the automation log for a successful exit and runtime game-target compilati
 - [x] Inspected the resulting package: every base template and scaffold source file is present (9 files total).
 - [x] Static fixture generation for all 16 checkbox combinations verified selected/omitted headers, no collisions and placeholder substitution.
 - [x] Compile/package the all-enabled generated fixture (including Unreal Header Tool reflection): Nov 22, 2026, `ScaffoldTest15` `BuildPlugin` exited 0; Editor Development linked both modules and game Development/Shipping compiled the reflected runtime classes only.
+- [x] Maintainer confirmed the enabled v0.2 plugin exposes **Tools > Configurable Plugin Wizard** in UE 5.9.
 - [ ] In a disposable C++ project, enable the packaged wizard and restart; confirm the standard tile and separate configurable wizard are both available.
 - [ ] In the configurable wizard, generate fresh plugins for none, each single option, a mixed pair, and all options. Verify descriptor and source names and that unchecked scaffolds are absent.
 - [ ] Close/reopen the configurable wizard and confirm checkboxes reset. Verify each generated Blueprint class is discoverable and usable in editor.

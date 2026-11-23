@@ -12,7 +12,7 @@ This optional **editor plugin** adds a **Runtime + Editor Framework** tile to **
 
 ## Configurable wizard (v0.2)
 
-The original New Plugin tile remains available for the minimal runtime/editor starter. For optional scaffolds, open **Window > Configurable Plugin Wizard** (Tools group), select the framework template, and tick any combination of these options before creating the plugin:
+The original New Plugin tile remains available for the minimal runtime/editor starter. For optional scaffolds, open **Tools > Configurable Plugin Wizard**, select the framework template, and tick any combination of these options before creating the plugin:
 
 | Option | Generated runtime class |
 | --- | --- |
