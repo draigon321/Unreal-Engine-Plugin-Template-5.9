@@ -10,7 +10,10 @@ public class UE59PluginWizard : ModuleRules
             "Core",
             "Projects",
             "UnrealEd",
-            "PluginBrowser"
+            "PluginBrowser",
+            "Slate",
+            "SlateCore",
+            "WorkspaceMenuStructure"
         });
     }
 }
